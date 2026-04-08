@@ -25,24 +25,6 @@ function organizeActivities(activities) {
   );
 }
 
-function organizador(actividades) {
-  return actividades.reduce((acc, actividades) => {
-    const { name, quantity, category } = actividades;
-
-    if (!acc[category]) {
-      acc[category] = {};
-    }
-
-    if (acc[category][name]) {
-      acc[category][name] += quantity;
-    } else {
-      acc[category][name] = quantity;
-    }
-
-    return acc;
-  }, {});
-}
-
 const activities = [
   { name: "Snorkel", quantity: 5, category: "Acuaticas" },
   { name: "Kayak", quantity: 3, category: "Acuaticas" },
