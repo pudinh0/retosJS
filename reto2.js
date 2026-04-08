@@ -62,3 +62,34 @@ const activities2 = [
 
 console.log(organizeActivities(activities2));
 // Resultado esperado: // { // Excursiones: { // Tour: 15 // }, // Arte: { // Pintura: 3 // } // }
+
+const sales = [
+  { name: "Cerveza", quantity: 10, category: "Bebidas" },
+  { name: "cerveza", quantity: 5, category: "Bebidas" }, // Debe sumarse a la anterior
+  { name: "Papas", quantity: 3, category: "Snacks" },
+  { name: "Soda", quantity: -2, category: "Bebidas" }, // ¡Ignorar! (cantidad negativa)
+  { name: "Hielo", quantity: 1, category: undefined }, // Categoría debe ser "Otros"
+  { name: "PAPAS", quantity: 2, category: "Snacks" }, // Debe sumarse a Snacks -> papas
+];
+
+function organizeInventory(sales) {
+  return sales.reduce((acc, sales) => {
+    const { name, quantity, category } = sales;
+
+    const cat = category || "Otros";
+
+    if (!acc[cat]) {
+      acc[cat] = {};
+    }
+
+    if (acc[cat][name.toLowerCase()]) {
+      acc[cat][name.toLowerCase()] += quantity;
+    } else {
+      acc[cat][name.toLowerCase()] = quantity;
+    }
+
+    return acc;
+  }, {});
+}
+
+console.log(organizeInventory(sales));
