@@ -45,6 +45,7 @@ const activities2 = [
 console.log(organizeActivities(activities2));
 // Resultado esperado: // { // Excursiones: { // Tour: 15 // }, // Arte: { // Pintura: 3 // } // }
 
+// reto propio para trabajar con objetos y arreglos, asi como con la funcion reduce
 const sales = [
   { name: "Cerveza", quantity: 10, category: "Bebidas" },
   { name: "cerveza", quantity: 5, category: "Bebidas" }, // Debe sumarse a la anterior
@@ -58,12 +59,13 @@ function organizeInventory(sales) {
   return sales.reduce((acc, sales) => {
     const { name, quantity, category } = sales;
 
+    // el || se utiliza para asignar un valor por defecto en caso de que category sea undefined o null
     const cat = category || "Otros";
 
     if (!acc[cat]) {
       acc[cat] = {};
     }
-
+    
     if (acc[cat][name.toLowerCase()]) {
       acc[cat][name.toLowerCase()] += quantity;
     } else {
